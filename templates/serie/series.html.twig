@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-6">
+                <ul>
+                    {% for serie in series %}
+                        <li {{ serie.id }}>
+                            <a href="{{ path('singleSerie', {id: serie.id}) }}">
+                                {{ serie.nom|capitalize }}<br>
+                                Produite de {{ serie.anneeDebut | date('d/m/Y ') }}
+                                à {{ serie.anneeFin | date('d/m/Y ') }}<br>
+                                Nombre de saisons : {{ serie.saisons }}<br>
+                                <img src="{{ serie.affiche }}">
+
+                            </a>
+                        </li>
+                        <br>
+                    {% endfor %}
+                </ul>
+
+            </div>
+            <div class="col-6">
+                {{ form_start(formSerie) }}
+                {{ form_rest(formSerie) }}
+                <select name="categorieId">
+                    {% for categorie in categories %}
+                        <option value="{{ categorie.id }}">Catégorie : {{ categorie.nom |capitalize }}</option>
+                    {% endfor %}
+                </select><br><br>
+                <button type="submit" class="btn btn-primary">Envoyer</button>
+                {{ form_end(formSerie) }}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

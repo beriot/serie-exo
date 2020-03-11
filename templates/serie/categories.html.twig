@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-6">
+                <h2>Nom de la catégorie</h2><br>
+                <ul>
+                    <ul {{categories.id}}>{{categories.name|capitalize}} </ul> <br>
+                </ul>
+                <a href="{{path("serie", {id: categories.id})}}"><button class="btn btn-danger">Supprimer cette catégorie</button></a>
+            </div>
+            <div class="col-6">
+                <h2>Modifier le nom de la catégorie</h2><br>
+                {{form_start(formCategories)}}
+                {{form_end(formCategories)}}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-6">
+                {% if series is empty %}
+                    <p>Il n'y a aucun utilisateur</p>
+                {% else %}
+                    <ul>
+                        {% for serie in series %}
+                            <li><a href="{{path('singleSerie', {id: serie.id})}}">{{serie.name|capitalize}}  {{serie.saisons|capitalize}} {{serie.categorie|length}}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            <div class="col-6">
+                {{form_start(formCategories)}}
+                {{form_end(formCategories)}}
+
+                {% for categorie in categories %}
+                    <li {{ categorie.id }}><a href="{{ path('categories', {id: categorie.id})}}">{{ categorie.name|capitalize }}  </a> </li><br>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

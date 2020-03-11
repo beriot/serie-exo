@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <div class="card" style="width: 18rem;">
+
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{serie.name|capitalize}}</h5>
+                        <p class="card-text">{{serie.dateDebut}}</p>
+                        <p class="card-text">{{serie.dateFin}}</p>
+                        <p class="card-text">{{serie.saison}}</p>
+                        <p class="card-text">{{serie.categorie}}</p>
+                    </div>
+                </div>
+                <div class="mt-5">
+                    <ul>
+
+                            {% for categorie in serie.categorie %}
+                                <li>{{categorie.name}} }}
+
+
+                                    <a href="{{path("remove", {id: categorie.id})}}"><button class="btn btn-danger">Supprimer</button></a>
+                                </li>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-6">
+                {{form_start(formSerie)}}
+                {{form_end(formSerie)}}
+            </div>
+        </div>
+    </div>
+{% endblock %}
